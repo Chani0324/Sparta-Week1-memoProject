@@ -1,7 +1,7 @@
 package com.sparta.memo.service;
 
-import com.sparta.memo.dto.MemoRequestDTO;
-import com.sparta.memo.dto.MemoResponseDTO;
+import com.sparta.memo.dto.MemoRequestDto;
+import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class MemoService {
     }
 
 
-    public MemoResponseDTO createMemo(MemoRequestDTO requestDto) {
+    public MemoResponseDto createMemo(MemoRequestDto requestDto) {
         // RequestDto -> Entity
         Memo memo = new Memo(requestDto);
 
@@ -26,17 +26,17 @@ public class MemoService {
         Memo saveMemo = memoRepository.save(memo);
 
         // Entity -> ResponseDto
-        MemoResponseDTO memoResponseDto = new MemoResponseDTO(memo);
+        MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
 
         return memoResponseDto;
     }
 
-    public List<MemoResponseDTO> getMemos() {
+    public List<MemoResponseDto> getMemos() {
         // DB 조회
         return memoRepository.findAll();
     }
 
-    public Long updateMemo(Long id, MemoRequestDTO requestDto) {
+    public Long updateMemo(Long id, MemoRequestDto requestDto) {
 
         // 해당 메모가 DB에 존재하는지 확인
         Memo memo = memoRepository.findById(id);

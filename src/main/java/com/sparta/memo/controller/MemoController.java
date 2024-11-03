@@ -1,7 +1,7 @@
 package com.sparta.memo.controller;
 
-import com.sparta.memo.dto.MemoRequestDTO;
-import com.sparta.memo.dto.MemoResponseDTO;
+import com.sparta.memo.dto.MemoRequestDto;
+import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.service.MemoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +18,17 @@ public class MemoController {
     }
 
     @PostMapping("/memos")
-    public MemoResponseDTO createMemo(@RequestBody MemoRequestDTO requestDto) {
+    public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
         return memoService.createMemo(requestDto);
     }
 
     @GetMapping("/memos")
-    public List<MemoResponseDTO> getMemos() {
+    public List<MemoResponseDto> getMemos() {
         return memoService.getMemos();
     }
 
     @PutMapping("/memos/{id}")
-    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDTO requestDto) {
+    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
         return memoService.updateMemo(id, requestDto);
     }
 

@@ -1,7 +1,7 @@
 package com.sparta.memo.repository;
 
-import com.sparta.memo.dto.MemoRequestDTO;
-import com.sparta.memo.dto.MemoResponseDTO;
+import com.sparta.memo.dto.MemoRequestDto;
+import com.sparta.memo.dto.MemoResponseDto;
 import com.sparta.memo.entity.Memo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -45,23 +45,23 @@ public class MemoRepository {
         return memo;
     }
 
-    public List<MemoResponseDTO> findAll() {
+    public List<MemoResponseDto> findAll() {
         // DB 조회
         String sql = "SELECT * FROM memo";
 
-        return jdbcTemplate.query(sql, new RowMapper<MemoResponseDTO>() {
+        return jdbcTemplate.query(sql, new RowMapper<MemoResponseDto>() {
             @Override
-            public MemoResponseDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-                // SQL 의 결과로 받아온 Memo 데이터들을 MemoResponseDTO 타입으로 변환해줄 메서드
+            public MemoResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                // SQL 의 결과로 받아온 Memo 데이터들을 MemoResponseDto 타입으로 변환해줄 메서드
                 Long id = rs.getLong("id");
                 String username = rs.getString("username");
                 String contents = rs.getString("contents");
-                return new MemoResponseDTO(id, username, contents);
+                return new MemoResponseDto(id, username, contents);
             }
         });
     }
 
-    public void update(Long id, MemoRequestDTO requestDto) {
+    public void update(Long id, MemoRequestDto requestDto) {
         String sql = "UPDATE memo SET username = ?, contents = ? WHERE id = ?";
         jdbcTemplate.update(sql, requestDto.getUsername(), requestDto.getContents(), id);
     }
